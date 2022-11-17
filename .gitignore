@@ -2,3 +2,4 @@ build/
 install/
 .ccls-cache/
 run.sh
+.breakpoints
