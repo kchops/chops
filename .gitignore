@@ -3,3 +3,5 @@ install/
 .ccls-cache/
 run.sh
 .breakpoints
+.clangd
+.ccls

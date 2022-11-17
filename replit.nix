@@ -1,7 +1,8 @@
 { pkgs }: {
 	deps = [
-		pkgs.file
-  pkgs.less
+		pkgs.vim
+        pkgs.file
+        pkgs.less
         pkgs.clang_12
 		pkgs.ccls
 		pkgs.gdb
