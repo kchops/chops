@@ -1,8 +1,7 @@
-compile = ["make", "-s"]
-run = "./main"
-entrypoint = "main.c"
-hidden = ["main", "main-debug", "**/*.o", "**/*.d", ".ccls-cache", "Makefile"]
 
+run = "sh run.sh"
+hidden = ["run.sh"]
+entrypoint = "tests/main.c"
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
 
@@ -10,7 +9,7 @@ requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
 support = true
 
 [debugger.compile]
-command = ["make", "main-debug"]
+command = ["sh", "run.sh"]
 noFileArgs = true
 
 [debugger.interactive]
