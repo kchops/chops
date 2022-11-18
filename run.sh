@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euxo pipefail
+set -eux
 
 echo "---------------------Building the chops library!--------------------"
 mkdir -p build
