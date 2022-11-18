@@ -2,16 +2,16 @@
 #include "container_string.h"
 #include <stddef.h>
 
-void string_add_zero_terminate(char const** buffer) {
+void string_add_zero_terminate(char ** buffer) {
     char eol = '\0';
     vector_push_back(buffer, &eol);
 }
 
-void string_remove_zero_terminate(char const** buffer) {
+void string_remove_zero_terminate(char ** buffer) {
     vector_pop_back(buffer);
 }
 
-void string_init(char const** buffer, char const* str, uint64_t size) {
+void string_init(char ** buffer, char const* str, uint64_t size) {
     vector_init(buffer, 1);
     for(uint64_t i = 0; i < size; ++i) {
         vector_push_back(buffer, str + i);
@@ -19,7 +19,7 @@ void string_init(char const** buffer, char const* str, uint64_t size) {
     string_add_zero_terminate(buffer);
 }
 
-void string_init_empty(char const** buffer) {
+void string_init_empty(char ** buffer) {
     vector_init(buffer, 1);
     string_add_zero_terminate(buffer);
 }
@@ -33,18 +33,18 @@ char string_char_at(char const * const buffer, uint64_t idx) {
     return *e;
 }
 
-void string_update_char_at(char const** buffer, uint64_t idx, char c) {
+void string_update_char_at(char ** buffer, uint64_t idx, char c) {
     ((char *)*buffer)[idx] = c;
 }
 
-void string_concatenate(char const** str1, char const * const str2) {
+void string_concatenate(char ** str1, char const * const str2) {
     string_remove_zero_terminate(str1);
     for(uint64_t i = 0; i < string_length(str2); ++i) {
         vector_push_back(str1, str2 + i);
     }
 }
 
-char const* get_substring(char const * const str, uint64_t id1, uint64_t id2) {
+char * get_substring(char const * const str, uint64_t id1, uint64_t id2) {
     char* substr = NULL;
     string_init_empty(&substr);
     string_remove_zero_terminate(&substr);
@@ -55,6 +55,6 @@ char const* get_substring(char const * const str, uint64_t id1, uint64_t id2) {
     return substr;
 }
 
-void string_free(char const** str1) {
+void string_free(char ** str1) {
     vector_free(str1);
 }

@@ -28,12 +28,12 @@ void vector_init(void** buffer, uint64_t element_size) {
 }
 
 uint64_t vector_length(const void * const buffer) {
-    const vector_header_t * const hdr = buffer - offsetof(vector_header_t, buffer_);
+    const vector_header_t * const hdr = (char *)buffer - offsetof(vector_header_t, buffer_);
     return hdr->length_;
 }
 
 void vector_grow(void** buffer) {
-    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
     uint64_t new_capacity_ = hdr->capacity_ * 2;
     uint64_t element_size = hdr->element_size_;
     uint64_t length = hdr->length_;
@@ -54,17 +54,17 @@ void vector_grow(void** buffer) {
 }
 
 void vector_push_back(void ** buffer, const void * const elem) {
-    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
     if(hdr->length_ == hdr->capacity_) {
         vector_grow(buffer);
     }
-    hdr = *buffer - offsetof(vector_header_t, buffer_);
-    memcpy(*buffer + (hdr->length_ * hdr->element_size_) , elem, hdr->element_size_);
+    hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
+    memcpy((char *)(*buffer) + (hdr->length_ * hdr->element_size_) , elem, hdr->element_size_);
     hdr->length_++;
 }
 
 void vector_shrink(void** buffer) {
-    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
     uint64_t new_capacity_ = hdr->capacity_ / 2;
     uint64_t element_size = hdr->element_size_;
     uint64_t length = hdr->length_;
@@ -83,7 +83,7 @@ void vector_shrink(void** buffer) {
 }
 
 void vector_pop_back(void ** buffer) {
-    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
     hdr->length_--;
     if(2 * hdr->length_ <=  hdr->capacity_) {
         vector_shrink(buffer);
@@ -91,25 +91,25 @@ void vector_pop_back(void ** buffer) {
 }
 
 void * const vector_at_checked(void * const buffer, uint64_t idx) {
-    vector_header_t* hdr = buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(buffer) - offsetof(vector_header_t, buffer_);
     void* res = NULL;
     if(idx < hdr->length_) {
-        res = buffer + (idx * hdr->element_size_);
+        res = (char *)(buffer) + (idx * hdr->element_size_);
     }
     return res;
 }
 
 void * const vector_at(void * const buffer, uint64_t idx) {
-    vector_header_t* hdr = buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(buffer) - offsetof(vector_header_t, buffer_);
     void* res = NULL;
     if(idx < hdr->length_) {
-        res = buffer + (idx * hdr->element_size_);
+        res = (char *)(buffer) + (idx * hdr->element_size_);
     }
     return res;
 }
 
 void vector_free(void** buffer) {
-    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    vector_header_t* hdr = (char *)(*buffer) - offsetof(vector_header_t, buffer_);
     free(hdr);
     *buffer = NULL;
 }
