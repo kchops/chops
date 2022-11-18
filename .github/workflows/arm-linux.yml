@@ -40,8 +40,7 @@ jobs:
         cpu: ${{ matrix.cpu }}
         commands: |
             sudo apt install -y valgrind gcc cmake git
-            echo "Valgrind installed"
-            chmod +x ci/build-and-run-linux.sh
+            chmod +x ci/ci-arm-linux.sh
             set LD_LIBRARY_PATH=${{ github.workspace }}/build/install/lib
             sh ci/ci-arm-linux.sh
 
