@@ -14,7 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1
-      
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          vsversion: "2019"
+          
       - name: Get latest CMake and Ninja
         # Using 'latest' branch, the most recent CMake and ninja are installed.
         uses: lukka/get-cmake@latest
