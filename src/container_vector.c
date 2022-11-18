@@ -20,6 +20,7 @@ void vector_init(void** buffer, unsigned long element_size) {
     uint64_t total_size_in_bytes = offsetof(vector_header_t, buffer_) + 
                                    (INITIAL_CAPACITY * element_size);
     vector_header_t* hdr = malloc(total_size_in_bytes);
+    memset(hdr, 0, total_size_in_bytes);
     hdr->element_size_ = element_size;
     hdr->length_ = 0;
     hdr->capacity_ = INITIAL_CAPACITY;
@@ -42,6 +43,7 @@ void vector_grow(void** buffer) {
                                        (hdr->capacity_ * hdr->element_size_);
 
     vector_header_t* hdr_new = malloc(new_total_size_in_bytes);
+    memset(hdr_new, 0, new_total_size_in_bytes);
     memcpy(hdr_new, hdr, old_total_size_in_bytes);
     hdr_new->element_size_ = element_size;
     hdr_new->length_ = length;
@@ -70,6 +72,7 @@ void vector_shrink(void** buffer) {
                                        (new_capacity_ * hdr->element_size_);
 
     vector_header_t* hdr_new = malloc(new_total_size_in_bytes);
+    memset(hdr_new, 0, new_total_size_in_bytes);
     memcpy(hdr_new, hdr, new_total_size_in_bytes);
     hdr_new->element_size_ = element_size;
     hdr_new->length_ = length;
