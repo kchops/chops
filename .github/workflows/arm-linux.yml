@@ -4,30 +4,36 @@ on:
   push:
     branches:
       - 'main'
-      - 'releases/**'
+      - 'release/**'
   pull_request:
   workflow_dispatch:
 
 env:
   LD_LIBRARY_PATH: ${{ github.workspace }}/build/install/lib
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         arch: [armv6l, armv7l, aarch64]
         include:
         - arch: armv6l
           cpu: arm1176
+          cpuinfo/raspberrypi_zero_w
           base_image: raspios_lite:latest
         - arch: armv7l
           cpu: cortex-a7
+          cpu_info: cpuinfo/raspberrypi_zero2_w
           base_image: raspios_lite:latest
         - arch: aarch64
           cpu: cortex-a53
+          cpu_info: cpuinfo/raspberrypi_zero2_w_arm64
           base_image: raspios_lite_arm64:latest
+
     steps:
+    - name: Build and Test
     - uses: actions/checkout@v3
     - uses: pguyot/arm-runner-action@HEAD
       with:
@@ -36,5 +42,7 @@ jobs:
         commands: |
             sudo apt install -y valgrind gcc cmake git
             echo "Valgrind installed"
+            chmod +x ci/build-and-run-linux.sh
+            set LD_LIBRARY_PATH=${{ github.workspace }}/build/install/lib
             sh ci/build-and-run-linux.sh
 

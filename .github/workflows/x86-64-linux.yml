@@ -2,19 +2,17 @@ name: x86-64-linux
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'main'
+      - 'release/**'
   pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   LD_LIBRARY_PATH: ${{ github.workspace }}/build/install/lib
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
 
     steps:
@@ -25,5 +23,5 @@ jobs:
       run: |
         sudo apt install -y valgrind
         echo "Valgrind installed"
-        sh sh ci/build-and-run-linux.sh
+        sh ci/build-and-run-linux.sh
 
