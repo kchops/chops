@@ -22,7 +22,7 @@ jobs:
 
     - name: Build and Test
       # run our script that builds the chops library, dependencies and unittests, runs them
-      run: 
+      run: |
         sudo apt install -y valgrind
         echo "Valgrind installed"
         sh run.sh
