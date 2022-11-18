@@ -43,5 +43,5 @@ jobs:
             echo "Valgrind installed"
             chmod +x ci/build-and-run-linux.sh
             set LD_LIBRARY_PATH=${{ github.workspace }}/build/install/lib
-            sh ci/build-and-run-linux.sh
+            sh ci/ci-arm-linux.sh
 

@@ -22,6 +22,5 @@ jobs:
       # run our script that builds the chops library, dependencies and unittests, runs them
       run: |
         sudo apt install -y valgrind
-        echo "Valgrind installed"
-        sh ci/build-and-run-linux.sh
+        sh ci/ci-x86-64-linux.sh
 
