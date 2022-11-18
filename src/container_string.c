@@ -54,3 +54,7 @@ char const* get_substring(char const * const str, uint64_t id1, uint64_t id2) {
     string_add_zero_terminate(&substr);
     return substr;
 }
+
+void string_free(char const** str1) {
+    vector_free(str1);
+}

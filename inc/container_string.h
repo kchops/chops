@@ -11,3 +11,5 @@ void string_update_char_at(char const** buffer, uint64_t idx, char c);
 
 void string_concatenate(char const** str1, char const * const str2);
 char const* get_substring(char const * const str, uint64_t id1, uint64_t id2);
+
+void string_free(char const** str1);

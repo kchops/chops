@@ -7,3 +7,4 @@ void vector_pop_back(void ** buffer);
 uint64_t vector_length(const void * const buffer);
 void * const vector_at_checked(void * const buffer, uint64_t idx);
 void * const vector_at(void * const buffer, uint64_t idx);
+void vector_free(void** buffer);

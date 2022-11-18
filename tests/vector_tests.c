@@ -20,6 +20,9 @@ CTEST_FUNCTION(VectorBasicTests) {
     }
     CTEST_ASSERT_ARE_EQUAL(float, 5000000050000000.0, accum);
     CTEST_ASSERT_ARE_EQUAL(float, 10000001.0, *((float *)vector_at(arr, 10000001)));
+
+    vector_free(&arr);
+    CTEST_ASSERT_IS_NULL(arr);
 }
 
 CTEST_END_TEST_SUITE(VectorTestSuite)

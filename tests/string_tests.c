@@ -16,6 +16,13 @@ CTEST_FUNCTION(StringrBasicTests) {
     CTEST_ASSERT_ARE_EQUAL(char_ptr, ", World", substr);
     string_update_char_at(&substr, 1, ':');
     CTEST_ASSERT_ARE_EQUAL(char_ptr, ",:World", substr);
+
+    string_free(&str1);
+    CTEST_ASSERT_IS_NULL(str1);
+    string_free(&str2);
+    CTEST_ASSERT_IS_NULL(str2);
+    string_free(&substr);
+    CTEST_ASSERT_IS_NULL(substr);
 }
 
 CTEST_END_TEST_SUITE(StringTestSuite)

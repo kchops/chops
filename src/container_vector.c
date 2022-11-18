@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdio.h>
 
 #define ABORT_WITH_ERROR_MSG(msg) \
     assert(0 && msg);
@@ -102,4 +103,10 @@ void * const vector_at(void * const buffer, unsigned long idx) {
         res = buffer + (idx * hdr->element_size_);
     }
     return res;
+}
+
+void vector_free(void** buffer) {
+    vector_header_t* hdr = *buffer - offsetof(vector_header_t, buffer_);
+    free(hdr);
+    *buffer = NULL;
 }

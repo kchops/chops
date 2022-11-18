@@ -27,7 +27,7 @@ target_link_libraries(${TARGET_NAME} chops::chops)
 set_target_properties(
     chops::chops
     PROPERTIES IMPORTED_LOCATION
-    /home/runner/chops/build/install/lib/libchops.so
+    ${chops-tests_BINARY_DIR}/lib/libchops.so
 )
 
 # include(../cmake/debug-helpers.cmake)

@@ -1,9 +1,9 @@
 
 run = "sh run.sh"
-hidden = ["run.sh"]
+hidden = ["run.sh", ".ccls-cache"]
 entrypoint = "tests/main.c"
 [gitHubImport]
-requiredFiles = [".replit", "replit.nix", ".ccls-cache"]
+requiredFiles = [".replit", "replit.nix"]
 
 [debugger]
 support = true
@@ -43,16 +43,16 @@ MIMode = "gdb"
 arg = []
 cwd = "."
 environment = []
-externalConsole = false
+externalConsole = true
 logging = {}
 miDebuggerPath = "gdb"
 name = "g++ - Build and debug active file"
-program = "./main-debug"
+program = "./build/install/chops-tests"
 request = "launch"
 setupCommands = [
 	{ description = "Enable pretty-printing for gdb", ignoreFailures = true, text = "-enable-pretty-printing" }
 ]
-stopAtEntry = false
+stopAtEntry = true
 type = "cppdbg"
 
 [languages]
