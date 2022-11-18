@@ -28,5 +28,7 @@ cmake ../../tests -Dchops_DIR="${PWD}/lib/cmake/chops"
 cmake --build .
 
 cd ../..
+echo "--------------Running valgrind to check memory errors!-------------"
+valgrind --leak-check=full --track-origins=yes -s build/install/chops-tests
 echo "------------------------Running unittests!-------------------------"
 ./build/install/chops-tests

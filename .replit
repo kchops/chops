@@ -1,6 +1,6 @@
 
 run = "sh run.sh"
-hidden = ["run.sh", ".ccls-cache"]
+hidden = [".ccls-cache"]
 entrypoint = "tests/main.c"
 [gitHubImport]
 requiredFiles = [".replit", "replit.nix"]

@@ -1,4 +1,4 @@
-name: CMake
+name: x86-64-linux
 
 on:
   push:
@@ -25,5 +25,5 @@ jobs:
       run: |
         sudo apt install -y valgrind
         echo "Valgrind installed"
-        sh run.sh
+        sh sh ci/build-and-run-linux.sh
 

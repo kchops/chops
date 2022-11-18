@@ -1,4 +1,4 @@
-name: arm
+name: arm-raspbian
 
 on:
   push:
@@ -36,5 +36,5 @@ jobs:
         commands: |
             sudo apt install -y valgrind gcc cmake git
             echo "Valgrind installed"
-            sh run.sh
+            sh ci/build-and-run-linux.sh
 

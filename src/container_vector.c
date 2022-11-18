@@ -15,7 +15,7 @@ typedef struct {
     char buffer_[1];
 } vector_header_t;
 
-void vector_init(void** buffer, unsigned long element_size) {
+void vector_init(void** buffer, uint64_t element_size) {
     static const unsigned char INITIAL_CAPACITY = 16;
     uint64_t total_size_in_bytes = offsetof(vector_header_t, buffer_) + 
                                    (INITIAL_CAPACITY * element_size);
@@ -27,7 +27,7 @@ void vector_init(void** buffer, unsigned long element_size) {
     *buffer = hdr->buffer_;
 }
 
-unsigned long vector_length(const void * const buffer) {
+uint64_t vector_length(const void * const buffer) {
     const vector_header_t * const hdr = buffer - offsetof(vector_header_t, buffer_);
     return hdr->length_;
 }
@@ -90,7 +90,7 @@ void vector_pop_back(void ** buffer) {
     }
 }
 
-void * const vector_at_checked(void * const buffer, unsigned long idx) {
+void * const vector_at_checked(void * const buffer, uint64_t idx) {
     vector_header_t* hdr = buffer - offsetof(vector_header_t, buffer_);
     void* res = NULL;
     if(idx < hdr->length_) {
@@ -99,7 +99,7 @@ void * const vector_at_checked(void * const buffer, unsigned long idx) {
     return res;
 }
 
-void * const vector_at(void * const buffer, unsigned long idx) {
+void * const vector_at(void * const buffer, uint64_t idx) {
     vector_header_t* hdr = buffer - offsetof(vector_header_t, buffer_);
     void* res = NULL;
     if(idx < hdr->length_) {
