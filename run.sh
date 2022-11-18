@@ -1,6 +1,9 @@
 #!/bin/sh
 set -eux
 
+git submodule init
+git submodule update --recursive --init
+
 echo "---------------------Building the chops library!--------------------"
 mkdir -p build
 cd build
