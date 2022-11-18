@@ -31,4 +31,7 @@ jobs:
         base_image: ${{ matrix.base_image }}
         cpu: ${{ matrix.cpu }}
         commands: |
-            test `uname -m` = ${{ matrix.arch }}
+            sudo apt install -y valgrind
+            echo "Valgrind installed"
+            sh run.sh
+
