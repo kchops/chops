@@ -1,0 +1,25 @@
+name: x64-win
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/**'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-dotnet@v1
+      
+      - name: Get latest CMake and Ninja
+        # Using 'latest' branch, the most recent CMake and ninja are installed.
+        uses: lukka/get-cmake@latest
+        
+      - name: Build chops on Windows
+        run: |
+          ci/ci-x64-win.ps1
+
