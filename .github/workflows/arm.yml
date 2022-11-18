@@ -31,7 +31,7 @@ jobs:
         base_image: ${{ matrix.base_image }}
         cpu: ${{ matrix.cpu }}
         commands: |
-            sudo apt install -y valgrind
+            sudo apt install -y valgrind gcc cmake git
             echo "Valgrind installed"
             sh run.sh
 
