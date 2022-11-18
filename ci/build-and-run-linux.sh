@@ -23,7 +23,6 @@ cp ${PWD}/ctest/deps/c-logging/libc_logging.a ${PWD}/lib
 
 #build the tests
 echo "---------------------Building the chops tests!---------------------"
-export LD_LIBRARY_PATH=${PWD}/lib:$LD_LIBRARY_PATH
 cmake ../../tests -Dchops_DIR="${PWD}/lib/cmake/chops"
 cmake --build .
 
